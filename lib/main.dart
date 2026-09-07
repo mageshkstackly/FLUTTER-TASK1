@@ -21,12 +21,21 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
+      // ROUTING
+      routes: {
+        '/home': (context) => const HomePage(),
+        '/register': (context) => const RegisterPage(),
+        '/forgot-password': (context) => const ForgotPasswordPage(),
+      },
+
       theme: ThemeData(
         fontFamily: 'Arial',
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF7C3AED),
         ),
       ),
+
       home: Scaffold(
         body: LayoutBuilder(
           builder: (context, constraints) {
@@ -265,15 +274,19 @@ class _MyAppState extends State<MyApp> {
                                       });
                                     },
                                   ),
+
                                   const Text(
                                     'Remember me',
                                     style: TextStyle(fontSize: 13),
                                   ),
+
                                   const Spacer(),
+
                                   TextButton(
                                     onPressed: () {
-                                      print(
-                                        'Forgot Password clicked',
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/forgot-password',
                                       );
                                     },
                                     child: const Text(
@@ -340,7 +353,10 @@ class _MyAppState extends State<MyApp> {
                                   ),
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      print('Login clicked');
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/home',
+                                      );
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.transparent,
@@ -371,6 +387,7 @@ class _MyAppState extends State<MyApp> {
                                       color: Colors.grey.shade300,
                                     ),
                                   ),
+
                                   const Padding(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 12),
@@ -382,6 +399,7 @@ class _MyAppState extends State<MyApp> {
                                       ),
                                     ),
                                   ),
+
                                   Expanded(
                                     child: Divider(
                                       color: Colors.grey.shade300,
@@ -416,7 +434,9 @@ class _MyAppState extends State<MyApp> {
                                       ),
                                     ),
                                   ),
+
                                   const SizedBox(width: 12),
+
                                   Expanded(
                                     child: OutlinedButton.icon(
                                       onPressed: () {
@@ -467,10 +487,12 @@ class _MyAppState extends State<MyApp> {
                                         fontSize: 13,
                                       ),
                                     ),
+
                                     TextButton(
                                       onPressed: () {
-                                        print(
-                                          'Create Account clicked',
+                                        Navigator.pushNamed(
+                                          context,
+                                          '/register',
                                         );
                                       },
                                       child: Text(
@@ -509,6 +531,205 @@ class _MyAppState extends State<MyApp> {
               ),
             );
           },
+        ),
+      ),
+    );
+  }
+}
+
+
+// ================= HOME PAGE =================
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Aeroplane Booking'),
+        backgroundColor: const Color(0xFF7C3AED),
+        foregroundColor: Colors.white,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.flight_takeoff,
+              size: 80,
+              color: Color(0xFF7C3AED),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'Welcome to Aeroplane Booking',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Logout'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+// ================= REGISTER PAGE =================
+
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Create Account'),
+        backgroundColor: const Color(0xFF7C3AED),
+        foregroundColor: Colors.white,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Column(
+          children: [
+            const SizedBox(height: 30),
+
+            const Text(
+              'Create Your Account',
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Name',
+                prefixIcon: Icon(Icons.person_outline),
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Email',
+                prefixIcon: Icon(Icons.email_outlined),
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            const TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                prefixIcon: Icon(Icons.lock_outline),
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            const SizedBox(height: 25),
+
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Register'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+// ================= FORGOT PASSWORD PAGE =================
+
+class ForgotPasswordPage extends StatelessWidget {
+  const ForgotPasswordPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Forgot Password'),
+        backgroundColor: const Color(0xFF7C3AED),
+        foregroundColor: Colors.white,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.lock_reset,
+              size: 80,
+              color: Color(0xFF7C3AED),
+            ),
+
+            const SizedBox(height: 20),
+
+            const Text(
+              'Reset Your Password',
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+            const Text(
+              'Enter your email address to reset your password.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+
+            const SizedBox(height: 25),
+
+            const TextField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                labelText: 'Email',
+                hintText: 'Enter your email',
+                prefixIcon: Icon(Icons.email_outlined),
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  print('Reset Password clicked');
+                },
+                child: const Text('Reset Password'),
+              ),
+            ),
+          ],
         ),
       ),
     );

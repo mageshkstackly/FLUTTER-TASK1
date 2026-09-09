@@ -57,7 +57,7 @@ class _AuthenticationPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lightBlue,
+      backgroundColor: const Color.fromARGB(255, 24, 155, 236),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(

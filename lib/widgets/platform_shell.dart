@@ -26,7 +26,7 @@ class PlatformShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 55, 99, 243),
+      backgroundColor: const Color.fromARGB(255, 244, 245, 247),
 
       drawer: Drawer(
         child: SafeArea(
@@ -140,7 +140,7 @@ class PlatformShell extends StatelessWidget {
       ),
 
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 242, 242, 243),
+        backgroundColor: const Color.fromARGB(255, 235, 235, 239),
         surfaceTintColor: const Color.fromARGB(255, 178, 5, 5),
         elevation: 0,
 
@@ -161,25 +161,25 @@ class PlatformShell extends StatelessWidget {
         titleSpacing: 0,
 
         title: Row(
-          children: [
-            const CloudLogo(
-              iconSize: 20,
-            ),
-            const SizedBox(width: 8),
+  children: [
+    const CloudLogo(
+      iconSize: 20,
+    ),
+    const SizedBox(width: 8),
 
-            Flexible(
-              child: Text(
-                title,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: darkBlue,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
+    const Flexible(
+      child: Text(
+        'One Cloud Enterprise Platform',
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          color: darkBlue,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
         ),
+      ),
+    ),
+  ],
+),
 
         actions: [
           TextButton.icon(
